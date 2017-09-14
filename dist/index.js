@@ -62,6 +62,23 @@
     };
   }
 
+  var _Map$propTypes;
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
@@ -214,6 +231,8 @@
         var _this4 = this;
 
         if (this.props && this.props.google) {
+          var _Object$assign;
+
           var google = this.props.google;
 
           var maps = google.maps;
@@ -226,7 +245,7 @@
           var mapTypeIds = this.props.google.maps.MapTypeId || {};
           var mapTypeFromProps = String(this.props.mapType).toUpperCase();
 
-          var mapConfig = Object.assign({}, {
+          var mapConfig = Object.assign({}, (_Object$assign = {
             mapTypeId: mapTypeIds[mapTypeFromProps],
             center: center,
             zoom: this.props.zoom,
@@ -247,7 +266,7 @@
             noClear: this.props.noClear,
             styles: this.props.styles,
             gestureHandling: this.props.gestureHandling
-          });
+          }, _defineProperty(_Object$assign, 'zoomControl', this.props.zoomControl), _defineProperty(_Object$assign, 'zoomControlOptions', this.props.zoomControlOptions), _Object$assign));
 
           Object.keys(mapConfig).forEach(function (key) {
             // Allow to configure mapConfig with 'false'
@@ -359,7 +378,7 @@
     return Map;
   }(_react2.default.Component);
 
-  Map.propTypes = {
+  Map.propTypes = (_Map$propTypes = {
     google: _propTypes2.default.object,
     zoom: _propTypes2.default.number,
     centerAroundCurrentLocation: _propTypes2.default.bool,
@@ -387,7 +406,7 @@
     noClear: _propTypes2.default.bool,
     styles: _propTypes2.default.array,
     gestureHandling: _propTypes2.default.string
-  };
+  }, _defineProperty(_Map$propTypes, 'zoomControl', _propTypes2.default.bool), _defineProperty(_Map$propTypes, 'zoomControlOptions', _propTypes2.default.object), _Map$propTypes);
 
   evtNames.forEach(function (e) {
     return Map.propTypes[(0, _String.camelize)(e)] = _propTypes2.default.func;
@@ -403,7 +422,9 @@
     centerAroundCurrentLocation: false,
     style: {},
     containerStyle: {},
-    visible: true
+    visible: true,
+    zoomControl: true,
+    zoomControlOptions: {}
   };
 
   exports.default = Map;
